@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
 import { useFetchSingleProduct } from '../utils/reactQuerryCustomHooks';
@@ -13,8 +13,9 @@ export const itemsAtoms = atom({ name: '', items: '', brand: '', quantity: 0, pr
 
 const SingleProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const [cart, setCart] = useAtom(cartsAtoms);
+  const [carts, setCarts] = useAtom(cartsAtoms);
 
   const { isLoading, data: product, isError } = useFetchSingleProduct(id);
   const [imageActive, setImageActive] = useState(0);
@@ -23,16 +24,30 @@ const SingleProduct = () => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     const { id, fields } = product;
-    const newItem = { id, items: fields.description, brand: fields.brand, price: fields.price, img: fields.icon[0] };
 
-    if (cart.length > 0) {
-      const itemsId = cart.find((item) => {
-        console.log(item.id);
-        console.log(newItem.id);
+    // Checking if there is a value inside carts state
+    const tempItem = carts.find((item) => item.id === id);
+    if (tempItem) {
+      const tempCart = carts.map((item) => {
+        // Check if user click the same item
+        if (item.id === id) {
+          let newQuantity = item.quantity + totalProduct;
+          return { ...item, quantity: newQuantity };
+        }
+
+        return { ...item };
       });
+
+      setCarts(tempCart);
+    } else {
+      // Add new item to cart
+      const newItem = { id, items: fields.name, brand: fields.brand, price: fields.price, img: fields.icon[0], quantity: totalProduct };
+
+      setCarts([...carts, newItem]);
     }
 
-    setCart([...cart, newItem]);
+    navigate('/cart'); // Navigate to cart page
+    setTotalProduct(1); // Reset total products
   };
 
   const handleOnClick = (type) => {
@@ -54,9 +69,10 @@ const SingleProduct = () => {
       });
     }
   };
+
   useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+    console.log(carts);
+  }, [carts]);
 
   if (isError) {
     return <Error />;
