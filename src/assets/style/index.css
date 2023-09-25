@@ -1,0 +1,592 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-black: 31 22 22;
+  --primary-white: 255 247 249;
+  --primary-brown: 215 187 168;
+}
+body {
+  @apply bg-[#FFF7F9] bg-opacity-50;
+}
+
+h3,
+h4,
+h5,
+p,
+a {
+  @apply font-Quicksand text-primaryBlack/80;
+}
+p {
+  @apply leading-loose;
+}
+
+h1 {
+  @apply font-GreatVibes text-4xl xl:text-5xl text-primaryPink;
+
+  & > span {
+    @apply font-Quicksand font-light text-2xl;
+  }
+}
+h2 {
+  @apply font-PlayfairDisplay text-xl lg:text-5xl max-w-sm lg:leading-relaxed lg:max-w-xl font-extralight text-primaryBlack/80;
+}
+
+hr {
+  width: 100%;
+  margin-top: 1rem;
+  height: 2px;
+  border: none;
+  background: linear-gradient(to right, rgba(30, 30, 30, 0.1), rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.1));
+}
+
+.shadow-text {
+  text-shadow: 0px 4px 4px rgba(31, 22, 22, 0.25);
+}
+.shadow-custom {
+  box-shadow: 0px 0px 4px rgba(31, 22, 22, 0.5);
+}
+.shadow-arrival {
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+.form-control {
+  @apply mt-5 flex flex-col;
+
+  & h5 {
+    @apply capitalize text-primaryBlack font-semibold font-Quicksand;
+  }
+  & label {
+    @apply text-xs text-primaryBlack/80 font-Quicksand;
+  }
+  & input {
+    @apply w-3/4;
+  }
+  & select {
+    @apply outline-none shadow-custom capitalize;
+  }
+}
+
+.pages {
+  @apply md:w-full flex flex-col;
+}
+
+.btn {
+  @apply font-bold mt-5 border-primaryGreen border-2 rounded-full px-5 py-2 flex items-center  gap-4 transition-all hover:bg-primaryPink hover:text-primaryWhite hover:border-transparent uppercase font-Quicksand text-xs lg:text-base lg:mt-10 text-primaryBlack/80;
+  & svg {
+    @apply w-5 h-5;
+  }
+}
+.btn-primary {
+  @apply p-1 px-5 text-center bg-primaryPink text-primaryWhite rounded-md font-semibold font-Quicksand mt-5 mb-10;
+}
+.btn-secondary {
+  @apply p-1 px-2 lg:px-5 text-center bg-primaryGreen text-primaryWhite rounded-md font-semibold font-Quicksand  text-sm lg:text-base hover:bg-opacity-90;
+}
+.btn-goToTop {
+  @apply right-5 lg:right-10 text-3xl text-primaryWhite p-2 rounded-full bottom-10  z-10 bg-primaryPink transition-all hover:bg-opacity-90;
+}
+
+.main-container {
+  @apply lg:flex justify-between items-center p-5 lg:px-44 w-full;
+}
+
+.page-header {
+  @apply bg-bgPrimaryPink mt-20 w-full p-5  py-8 lg:px-44;
+
+  & h3 {
+    @apply font-Quicksand font-bold lg:text-xl  capitalize;
+  }
+
+  & a {
+    @apply text-primaryPink;
+  }
+}
+
+.loader {
+  width: 15rem;
+  height: 15rem;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border-top: 2px solid #e13c6b;
+  border-right: 2px solid transparent;
+  animation: spinner8217 0.8s linear infinite;
+}
+
+@keyframes spinner8217 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*! Home Page  */
+
+/*? #NAVBAR */
+nav {
+  @apply hidden  z-20 fixed;
+  & > ul {
+    @apply flex gap-10 justify-center items-center text-base;
+  }
+  & > div {
+    @apply flex gap-5;
+
+    & svg {
+      @apply w-6 h-6;
+    }
+    & a {
+      @apply flex justify-center items-center  font-semibold text-lg relative;
+
+      & > div {
+        @apply absolute w-5 h-5 bg-primaryPink -right-3 rounded-full -top-1 text-xs flex justify-center items-center text-white;
+      }
+    }
+  }
+}
+.nav {
+  @apply shadow-custom bg-opacity-70 bg-bgPrimaryPink backdrop-blur-sm transition-all;
+}
+
+.aside {
+  @apply h-screen w-9/12 bg-primaryWhite top-0 left-0  transition-all duration-500 shadow-custom p-5 flex items-center flex-col justify-between pb-20 fixed z-20;
+
+  & > div:first-child {
+    @apply flex justify-between w-full items-center -mb-10;
+
+    & svg {
+      @apply w-10 h-10 text-primaryBlack/80;
+    }
+  }
+  & > ul {
+    @apply flex flex-col gap-10 text-base font-Quicksand text-center;
+  }
+  & > div:last-child {
+    @apply flex flex-col gap-2;
+
+    & > a {
+      @apply flex justify-center items-center gap-2 font-semibold text-xl relative;
+
+      &:first-child > div {
+        @apply absolute w-5 h-5 bg-primaryPink -right-1 rounded-full -top-1 text-xs flex justify-center items-center;
+
+        & > p {
+          @apply text-primaryWhite;
+        }
+      }
+      & svg {
+        @apply w-6 h-6;
+      }
+    }
+  }
+}
+/*? #NAVBAR */
+
+/*? #MAIN  */
+.main {
+  @apply mt-20 lg:mt-10;
+
+  & > div:first-child {
+    @apply lg:w-1/2 w-full;
+  }
+  & > div:last-child {
+    @apply lg:w-1/2 w-full  relative;
+
+    & img {
+      @apply hidden lg:flex -z-10 relative;
+    }
+    & > div {
+      @apply w-full mt-14 lg:-mt-20 xl:-mt-40 bg-secondaryPink  md:w-1/2 lg:w-full p-5 py-10 flex gap-5 items-center;
+
+      & h3 {
+        @apply self-start text-primaryWhite;
+      }
+    }
+    & > div > div {
+      @apply w-full text-xs text-primaryWhite leading-normal flex flex-col gap-5;
+
+      & p {
+        @apply text-primaryWhite;
+      }
+      & a {
+        @apply flex items-center md:gap-2 font-semibold text-xs text-primaryWhite;
+      }
+    }
+  }
+}
+
+.container-card {
+  @apply mt-32 flex justify-center gap-10 md:justify-start;
+}
+.card-preview {
+  @apply w-24 h-24 bg-bgPrimaryProducts relative flex justify-center lg:w-36 lg:h-36 -z-10;
+
+  & > img {
+    @apply absolute -top-20 w-20 lg:w-24;
+  }
+  & > h5 {
+    @apply absolute -bottom-7 start-0 text-primaryPink;
+  }
+}
+/*? #MAIN  */
+
+/*? #ARRIVAL  */
+.card-arrival-container {
+  @apply flex flex-col lg:flex-row lg:gap-10 w-full lg:justify-between;
+
+  & li {
+    @apply mt-10;
+
+    & img {
+      @apply w-40 h-52 shadow-arrival lg:w-72 lg:h-96;
+    }
+    & h5 {
+      @apply text-primaryPink font-medium mt-1 lg:text-xl;
+    }
+  }
+}
+/*? #ARRIVAL  */
+
+/*? #BESTIE  */
+.bestie-container {
+  @apply mt-14;
+
+  & > div:first-child {
+    @apply w-full lg:w-1/2 flex flex-col gap-5;
+
+    & h1 {
+      @apply text-center lg:text-start;
+    }
+    & h2 {
+      @apply lg:max-w-sm;
+    }
+    & .btn {
+      @apply w-56 lg:w-[16.5rem];
+    }
+  }
+  & > div:last-child {
+    @apply w-full hidden lg:flex justify-center  lg:w-1/2 relative ml-10;
+
+    & > div {
+      @apply bg-secondaryPink w-80 absolute -mr-20 -z-10 -mt-10;
+    }
+  }
+}
+/*? #BESTIE  */
+
+/*? #JOURNAL  */
+.container-journal {
+  @apply mt-20 flex flex-col justify-between;
+
+  & > h2 {
+    @apply text-center max-w-none w-full;
+  }
+  & > .btn {
+    @apply w-[12.5rem] lg:w-[15rem];
+  }
+  & > div {
+    @apply w-full mt-10 lg:mt-20 flex;
+
+    & > .women-masker {
+      @apply hidden lg:flex  w-1/2 items-center justify-center;
+
+      & img {
+        @apply self-end ml-60 -mt-11 z-10;
+      }
+    }
+
+    & > .card-subscribe {
+      & > form {
+        @apply -mt-10 z-10 absolute ml-1 flex items-center lg:ml-36 lg:-mt-20;
+
+        & svg {
+          @apply text-primaryBlack/80 absolute ml-4 lg:text-2xl;
+        }
+        & input {
+          @apply bg-primaryWhite rounded-full p-2 pl-9 focus:outline-none w-52 pr-20 text-xs lg:pr-11 lg:text-base lg:pl-11;
+        }
+        & button {
+          @apply p-1 -ml-20 bg-bgPrimaryPink px-5 rounded-full text-primaryBlack/80 font-Quicksand font-semibold lg:-ml-10 lg:py-2 hover:bg-primaryPink hover:text-primaryWhite;
+        }
+      }
+      & > div {
+        @apply bg-secondaryPink relative  lg:w-[30rem];
+
+        & h3 {
+          @apply text-primaryWhite absolute top-0 text-2xl font-PlayfairDisplay font-semibold ml-1 mt-6 lg:text-4xl lg:ml-36;
+        }
+        & h4 {
+          @apply text-primaryWhite absolute top-0 ml-1 mt-14 text-base font-PlayfairDisplay lg:text-xl lg:mt-20 lg:ml-36;
+        }
+      }
+    }
+  }
+}
+
+.journal-article {
+  @apply flex flex-col mt-20 lg:flex-row lg:w-full justify-between;
+
+  & > div {
+    @apply lg:w-1/2 self-center;
+
+    & > div {
+      @apply bg-secondaryPink w-64 absolute -ml-10 -z-10 -mt-10 lg:w-80;
+    }
+    & > img {
+      @apply self-center mb-10 shadow-sm;
+    }
+  }
+
+  & > div:nth-child(2) {
+    @apply lg:w-1/2;
+
+    & > h2 {
+      @apply lg:text-xl;
+    }
+    & > p {
+      @apply mt-5;
+    }
+    & > a {
+      @apply flex items-center gap-5 font-bold text-base mt-10;
+    }
+    & svg {
+      @apply w-7 h-7;
+    }
+  }
+}
+/*? #JOURNAL  */
+
+/*! Products Page  */
+
+/*? #AllFilter  */
+.all-filters {
+  & > div:first-child {
+    @apply p-2 px-5 border-2 max-w-xs w-full rounded-md lg:w-2/6 shadow-custom self-start lg:pb-28;
+  }
+  & > div:last-child {
+    @apply w-full self-start justify-start  lg:ml-5 mt-5 lg:mt-0;
+
+    & > div {
+      @apply flex w-full gap-5;
+
+      & button svg {
+        @apply p-1 w-8 h-8  shadow-custom text-primaryBlack/80 rounded-sm border-2 transition-all;
+      }
+      & .active {
+        @apply bg-primaryPink  text-primaryWhite border-none transition-all;
+      }
+    }
+  }
+}
+.checkbox-input {
+  @apply mt-20;
+
+  & h5 {
+    @apply text-primaryBlack font-semibold font-Quicksand;
+  }
+  & > div {
+    @apply flex items-center gap-2;
+  }
+}
+/*? #AllFilter  */
+
+/*? #CategoryProducts  */
+.category__products-container {
+  @apply flex items-center justify-start gap-3;
+
+  & h2 {
+    @apply text-2xl;
+  }
+  & select {
+    @apply bg-primaryPink capitalize text-primaryWhite outline-none hover:bg-primaryPink/80 cursor-pointer rounded-sm mt-1;
+  }
+
+  & option {
+    @apply hover:cursor-pointer;
+  }
+}
+/*? #CategoryProducts  */
+
+/*? #ContainerProducts  */
+.container-products_grid {
+  @apply mt-5 flex flex-wrap gap-5;
+
+  & > li {
+    @apply bg-secondaryWhite shadow-custom w-60 h-72 max-w-xs rounded-md relative  overflow-hidden;
+
+    & > div {
+      @apply bg-white flex items-center h-1/2;
+    }
+    & img {
+      @apply w-24  mx-auto;
+    }
+    & a {
+      @apply absolute top-[25%] left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-primaryBlack/50 w-full h-1/2 opacity-0  transition-all;
+
+      & > svg {
+        @apply w-8 h-8 mx-auto  absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 text-primaryWhite;
+      }
+    }
+
+    & article {
+      @apply w-full p-3;
+
+      & > div {
+        @apply w-full flex items-center gap-2 mt-2 justify-between;
+
+        & > p {
+          @apply font-Quicksand font-bold text-primaryBlack/20 capitalize;
+        }
+        & > div {
+          @apply h-10 w-[1px] bg-primaryBlack/20;
+        }
+        & button:first-child {
+          @apply flex justify-center items-center text-primaryWhite bg-primaryOrange p-1 px-2 rounded-full gap-2;
+
+          & p {
+            @apply text-primaryWhite font-bold font-Quicksand text-xs tracking-wide;
+          }
+        }
+        & button:last-child {
+          @apply bg-primaryPink rounded-full w-8 h-8;
+
+          & svg {
+            @apply w-5 h-5 mx-auto text-primaryWhite;
+          }
+        }
+      }
+      & h4 {
+        @apply font-bold font-Quicksand text-sm  tracking-wide text-primaryBlack;
+      }
+      & h5 {
+        @apply font-bold font-Quicksand text-sm  tracking-widest text-primaryBlack/80 max-w-[12rem] mt-3;
+      }
+    }
+  }
+}
+
+.container-products_list {
+  @apply flex flex-col justify-center  items-center gap-5 mt-5;
+
+  & li {
+    @apply w-full bg-secondaryWhite flex shadow-sm gap-5 rounded-md border-2 border-primaryBlack/20;
+
+    & > article {
+      @apply flex flex-col justify-center items-start gap-1 p-1 lg:w-9/12 pb-2;
+
+      & > h5 {
+        @apply font-bold text-primaryBlack text-xs lg:text-base;
+      }
+      & > p {
+        @apply text-xs lg:text-base;
+      }
+      & .pricing {
+        @apply flex flex-row justify-evenly items-center   gap-2;
+
+        & > p {
+          @apply text-xs lg:text-lg font-bold text-primaryBlack/80;
+        }
+        & > button {
+          @apply flex items-center gap-2 bg-primaryPink p-2 rounded-full text-primaryWhite;
+        }
+      }
+    }
+
+    & > div:first-child {
+      @apply w-1/2  lg:w-1/4  flex justify-center items-center  bg-primaryWhite relative rounded-l-md shadow-md p-5 group-hover:opacity-50  hover:cursor-pointer;
+
+      & img {
+        @apply w-1/2;
+      }
+    }
+
+    & a {
+      @apply absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-primaryBlack/50 w-full h-full opacity-0  transition-all rounded-l-md;
+
+      & > svg {
+        @apply w-8 h-8 mx-auto  absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 text-primaryWhite;
+      }
+    }
+    & .rating {
+      @apply absolute  top-1 left-1 flex justify-center items-center text-primaryWhite  bg-primaryOrange p-1 rounded-full gap-2 w-14;
+
+      & p {
+        @apply text-primaryWhite text-xs;
+      }
+    }
+  }
+}
+/*? #ContainerProducts  */
+
+/*! Single Product Page  */
+
+/*? #COntainer Single Products   */
+.container-single_products {
+  @apply flex-col justify-start items-start;
+
+  & > div {
+    @apply w-full flex flex-col lg:flex-row items-start  lg:justify-end lg:gap-20 mt-10;
+
+    & > div:first-child > img {
+      @apply rounded-sm overflow-hidden  lg:w-[30rem] lg:h-[30rem] shadow-arrival;
+    }
+    & ul {
+      @apply mt-5 flex gap-5;
+    }
+
+    & > .products-description {
+      @apply mt-10 lg:mt-0 lg:w-4/5 w-full flex flex-col gap-2;
+
+      & h2 {
+        @apply font-Quicksand text-primaryBlack font-semibold text-lg lg:text-2xl;
+      }
+      & > p {
+        @apply font-semibold font-Quicksand  text-primaryBlack/50;
+      }
+      & > h4 {
+        @apply max-w-xs  lg:max-w-lg font-bold text-xl;
+      }
+
+      & > .products-button {
+        @apply flex items-center gap-4  text-2xl font-semibold mt-16 lg:mt-24 lg:w-96 mb-10 lg:mb-0;
+
+        & > .btn-click {
+          @apply w-7;
+        }
+        & > p {
+          @apply w-7  text-center;
+        }
+      }
+    }
+
+    .container-stars {
+      @apply flex items-center  text-primaryOrange;
+
+      & svg {
+        @apply text-xl lg:text-4xl;
+      }
+      & h5 {
+        @apply text-primaryOrange font-bold text-lg;
+      }
+    }
+  }
+}
+/*? #COntainer Single Products   */
+
+/*! Cart Page  */
+/*? #Container Cart Pages   */
+
+td {
+  @apply py-5  text-center  justify-start gap-10 text-xs lg:text-base;
+}
