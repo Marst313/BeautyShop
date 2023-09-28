@@ -10,11 +10,7 @@ export const filtersAtom = atom({
   brand: 'All',
   type: 'All',
 });
-export const cartsAtom = atom({
-  name: '',
-  amount: 0,
-  price: 0,
-});
+export const cartsAtoms = atom([]);
 
 const Products = () => {
   return (

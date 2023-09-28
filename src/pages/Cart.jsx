@@ -1,36 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import img from '../assets/images/products/Exfoliating Scrub3.jpg';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { useAtom } from 'jotai';
+import { cartsAtoms } from './Products';
 
 const Cart = () => {
-  const defaultData = [
-    {
-      id: 1,
-      items: 'Inner Glow',
-      brand: 'Nike',
-      quantity: 3,
-      price: 100,
-      img: img,
-    },
-    {
-      id: 2,
-      items: 'Yuja',
-      brand: 'Low',
-      quantity: 5,
-      price: 40,
-      img: img,
-    },
-    {
-      id: 3,
-      items: 'Serum Avoskin lta',
-      brand: 'Slow',
-      quantity: 2,
-      price: 20,
-      img: img,
-    },
-  ];
+  const [carts, setCarts] = useAtom(cartsAtoms);
+  const [data, setData] = useState([...carts]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const columnHelper = createColumnHelper();
 
@@ -38,11 +17,11 @@ const Cart = () => {
     columnHelper.accessor((row) => row, {
       id: 'Items',
       cell: ({ getValue }) => {
-        const { items, brand } = getValue();
+        const { items, brand, img } = getValue();
 
         return (
           <div className="flex text-start gap-1 flex-col lg:flex-row  lg:w-52 ">
-            <img src={img} alt="" className="w-14" />
+            <img src={img.url} alt="" className="w-14" />
 
             <div>
               <h5 className="font-semibold">{items}</h5>
@@ -98,14 +77,19 @@ const Cart = () => {
       footer: (info) => info.column.id,
     }),
 
-    columnHelper.accessor((row) => row, {
-      id: 'Total',
-      cell: (info) => {
-        const { quantity, price } = info.getValue();
-        return quantity * price;
+    columnHelper.accessor(
+      (row) => {
+        return row;
       },
-      footer: (info) => info.column.id,
-    }),
+      {
+        id: 'Total',
+        cell: (info) => {
+          const { quantity, price } = info.getValue();
+          return <span>${(quantity * price).toFixed(1)}</span>;
+        },
+        footer: (info) => info.column.id,
+      }
+    ),
 
     columnHelper.accessor('id', {
       header: 'Delete',
@@ -113,6 +97,7 @@ const Cart = () => {
         const deleteItem = (id) => {
           const item = data.filter((item) => item.id !== id);
 
+          setCarts(data);
           setData(item);
         };
 
@@ -126,13 +111,21 @@ const Cart = () => {
     }),
   ];
 
-  const [data, setData] = React.useState([...defaultData]);
-
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  useEffect(() => {
+    if (data.length !== 0) {
+      const total = data
+        .map((item) => +(item.price * item.quantity))
+        .reduce((acc, curr) => acc + curr, 0)
+        .toFixed(1);
+      setTotalPrice(total);
+    }
+  }, [data]);
 
   if (data.length === 0) {
     return (
@@ -170,6 +163,21 @@ const Cart = () => {
             ))}
           </tbody>
         </table>
+
+        <section className="w-full mt-10 flex justify-end text-base">
+          <div className="w-72  bg-bgPrimaryPink p-3 flex flex-col gap-2 rounded-sm ">
+            <h3 className="flex justify-between ">
+              Total Products : <span>{data.length}</span>
+            </h3>
+            <h3 className="flex justify-between ">
+              Shipping : <span>$20</span>
+            </h3>
+            <h3 className="flex justify-between font-bold">
+              Total : <span>${totalPrice}</span>
+            </h3>
+            <button className="btn-primary  lg:mb-0">Pay Now !</button>
+          </div>
+        </section>
       </section>
     </main>
   );
