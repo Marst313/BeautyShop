@@ -1,16 +1,5 @@
 import React from 'react';
-import { atom, useAtom } from 'jotai';
-
 import { AllFilter, Caraousel, PageHeader } from '../components';
-
-export const filtersAtom = atom({
-  price: 0,
-  rating: 0,
-  sort: 'lowest',
-  brand: 'All',
-  type: 'All',
-});
-export const cartsAtoms = atom([]);
 
 const Products = () => {
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import { filtersAtom } from '../pages/Products';
+
+import { filtersAtom } from '../utils/store';
 
 const InputFilter = ({ type, name, max }) => {
   const [filters, setFilters] = useAtom(filtersAtom);
@@ -9,7 +10,6 @@ const InputFilter = ({ type, name, max }) => {
     const name = e.target.name;
 
     const newValue = (filters[name] = value);
-
     setFilters({ ...filters, name: newValue });
   };
 

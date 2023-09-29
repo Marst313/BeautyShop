@@ -15,5 +15,6 @@ import Navbar from './Navbar';
 import PageHeader from './PageHeader';
 import Sidebar from './Sidebar';
 import SmallNavbar from './SmallNavbar';
+import Table from './Table';
 
-export { AllProducts, AllFilter, Arrival, Bestie, Caraousel, CardGrid, CardList, Footer, InputFilter, Journal, Loading, Main, MainAbout, Navbar, PageHeader, SmallNavbar, Sidebar };
+export { AllProducts, AllFilter, Arrival, Bestie, Caraousel, CardGrid, CardList, Footer, InputFilter, Journal, Loading, Main, MainAbout, Navbar, PageHeader, SmallNavbar, Sidebar, Table };

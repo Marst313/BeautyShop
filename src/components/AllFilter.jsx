@@ -2,9 +2,9 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import { atom, useAtom } from 'jotai';
 
-import { filtersAtom } from '../pages/Products';
 import { AllProducts, InputFilter } from './';
-import { AllBrandsAtom, AllTypesAtom, LargestPriceAtom, PositionAtom } from './AllProducts';
+import { AllBrandsAtom, AllTypesAtom, LargestPriceAtom, PositionAtom } from '../utils/store';
+import { filtersAtom } from '../utils/store';
 
 export const listTypeAtom = atom('grid');
 
