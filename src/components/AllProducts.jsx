@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { atom, useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 
-import { Error, Products } from '../pages/';
+import { Error } from '../pages/';
 import { CardGrid, CardList, Loading } from './';
-import { filtersAtom } from '../pages/Products';
 import { useFetchProduct } from '../utils/reactQuerryCustomHooks';
-
-export const AllTypesAtom = atom([]);
-export const AllBrandsAtom = atom([]);
-export const LargestPriceAtom = atom([]);
-
-export const AllItemsAtom = atom([]);
-export const PositionAtom = atom({ start: 0, end: 10 });
+import { AllBrandsAtom, AllItemsAtom, AllTypesAtom, LargestPriceAtom, PositionAtom, filtersAtom } from '../utils/store';
 
 const AllProducts = ({ listType }) => {
   const [filters] = useAtom(filtersAtom);
 
   const [item, setItem] = useAtom(AllItemsAtom);
   const [position, setPosition] = useAtom(PositionAtom);
-  const [end, setEnd] = useState(10);
 
   const { data: products, isError, isLoading } = useFetchProduct();
-  const [allTypes, setAllTypes] = useAtom(AllTypesAtom);
-  const [allBrands, setAllBrands] = useAtom(AllBrandsAtom);
-  const [allPrice, setAllPrice] = useAtom(LargestPriceAtom);
+  const setAllTypes = useSetAtom(AllTypesAtom);
+  const setAllBrands = useSetAtom(AllBrandsAtom);
+  const setAllPrice = useSetAtom(LargestPriceAtom);
 
   const itemProducts = (products) => {
     const filteredProduct = products.records

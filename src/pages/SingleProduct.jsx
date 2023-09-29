@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useFetchSingleProduct } from '../utils/reactQuerryCustomHooks';
-
 import { Loading, PageHeader } from '../components';
-import { cartsAtoms } from './Products';
 import { Error } from '.';
+import { cartsStorage } from '../utils/store';
 
 const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [carts, setCarts] = useAtom(cartsAtoms);
+  const [carts, setCarts] = useAtom(cartsStorage);
 
   const { isLoading, data: product, isError } = useFetchSingleProduct(id);
   const [imageActive, setImageActive] = useState(0);
