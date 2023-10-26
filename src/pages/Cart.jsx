@@ -5,23 +5,29 @@ import { useAtom } from 'jotai';
 
 import { cartsStorage } from '../utils/store';
 import Table from '../components/Table';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Cart = () => {
   const [carts, setCarts] = useAtom(cartsStorage);
   const [data, setData] = useState([...carts]);
 
-  const [totalPrice, setTotalPrice] = useState(0);
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
-  useEffect(() => {
-    const item = JSON.parse(localStorage.getItem('carts'));
-    setData(item);
-  }, []);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [productsPrice, setProductsPrice] = useState(0);
+
+  const handleOnClick = () => {
+    console.log('hello guys');
+  };
 
   useEffect(() => {
     if (data.length !== 0) {
       const total = data
         .map((item) => +(item.price * item.quantity + 20))
-        .reduce((acc, curr) => acc + curr, 0)
+        .reduce((acc, curr) => {
+          setProductsPrice((acc + curr - 20).toFixed(2));
+          return acc + curr;
+        }, 0)
         .toFixed(1);
       setTotalPrice(total);
     }
@@ -29,7 +35,6 @@ const Cart = () => {
 
   useEffect(() => {
     const getItemLocal = JSON.parse(localStorage.getItem('carts'));
-
     setData(getItemLocal);
   }, []);
 
@@ -46,25 +51,29 @@ const Cart = () => {
 
   return (
     <main>
-      <section className="main-container flex justify-center items-center mt-20 flex-col">
-        <h3 className="font-bold text-xl lg:mt-10">Dharma Cart {data.length} items</h3>
+      <section className="cart-container">
+        <h3>
+          {user?.name || 'User'} Cart {data.length} items
+        </h3>
 
         <Table setCarts={setCarts} setData={setData} data={data} />
 
-        <section className="w-full mt-10 flex justify-end text-base">
-          <div className="w-72  bg-bgPrimaryPink p-3 flex flex-col gap-2 rounded-sm ">
-            <h3 className="flex justify-between ">
-              Total Products : <span>{data.length}</span>
+        <div className="payment-container">
+          <div>
+            <h3>
+              Product Price : <span>${productsPrice}</span>
             </h3>
-            <h3 className="flex justify-between ">
+            <h3>
               Shipping : <span>$20</span>
             </h3>
-            <h3 className="flex justify-between font-bold">
+            <h2 className="font-bold text-lg font-Quicksand flex justify-between">
               Total : <span>${totalPrice}</span>
-            </h3>
-            <button className="btn-primary  lg:mb-0">Pay Now !</button>
+            </h2>
+            <button onClick={() => (isAuthenticated ? handleOnClick() : loginWithRedirect())} className={`btn-primary lg:mb-0 hover:bg-opacity-90`}>
+              {!isAuthenticated ? 'Login' : 'Pay Now !'}
+            </button>
           </div>
-        </section>
+        </div>
       </section>
     </main>
   );

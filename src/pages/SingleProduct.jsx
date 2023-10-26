@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { useAtom } from 'jotai';
+
 import { useFetchSingleProduct } from '../utils/reactQuerryCustomHooks';
 import { Loading, PageHeader } from '../components';
 import { Error } from '.';

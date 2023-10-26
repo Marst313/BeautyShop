@@ -78,7 +78,7 @@ hr {
   }
 }
 .btn-primary {
-  @apply p-1 px-5 text-center bg-primaryPink text-primaryWhite rounded-md font-semibold font-Quicksand mt-5 mb-10;
+  @apply p-1 px-5 text-center bg-primaryPink text-primaryWhite rounded-md font-semibold font-Quicksand mt-5 mb-10  cursor-pointer;
 }
 .btn-secondary {
   @apply p-1 px-2 lg:px-5 text-center bg-primaryGreen text-primaryWhite rounded-md font-semibold font-Quicksand  text-sm lg:text-base hover:bg-opacity-90;
@@ -256,6 +256,13 @@ nav {
     }
   }
 }
+.arrival-container {
+  @apply lg:mt-20 lg:flex-col;
+
+  & > h2 {
+    @apply self-start;
+  }
+}
 /*? #ARRIVAL  */
 
 /*? #BESTIE  */
@@ -399,7 +406,29 @@ nav {
     @apply flex items-center gap-2;
   }
 }
+
 /*? #AllFilter  */
+
+/*?  Caraousel*/
+.container-caraousel {
+  @apply w-full bg-secondaryWhite h-[30rem]  flex flex-col;
+
+  & > ul {
+    @apply w-full flex relative overflow-hidden;
+
+    & li {
+      @apply w-full flex-col justify-center items-center lg:justify-between lg:flex-row transition-all;
+    }
+  }
+}
+.dots-container {
+  @apply flex w-full gap-5 mt-5 justify-center lg:justify-start;
+
+  & > button {
+    @apply w-4 h-4 lg:w-5 lg:h-5 rounded-full;
+  }
+}
+/*?  Caraousel*/
 
 /*? #CategoryProducts  */
 .category__products-container {
@@ -587,6 +616,50 @@ nav {
 /*! Cart Page  */
 /*? #Container Cart Pages   */
 
+.cart-container {
+  @apply main-container flex justify-center items-center mt-20 flex-col;
+
+  & > h3 {
+    @apply font-bold text-xl lg:mt-10;
+  }
+
+  & .payment-container {
+    @apply w-full mt-10 flex justify-end text-base;
+
+    & > div {
+      @apply w-72 bg-bgPrimaryPink p-3 flex flex-col gap-2 rounded-sm;
+
+      & h3 {
+        @apply flex justify-between;
+      }
+    }
+  }
+}
+
 td {
   @apply py-5  text-center  justify-start gap-10 text-xs lg:text-base;
+}
+/*? #Container Cart Pages   */
+
+/*! Footer Page  */
+/*? #Container Footer Pages   */
+
+footer {
+  @apply main-container w-screen mt-32 bg-bgPrimaryPink flex flex-col gap-10;
+
+  & > div {
+    @apply flex items-center flex-col lg:flex-row lg:justify-between w-full;
+  }
+
+  & > h4 {
+    @apply lg:self-start text-center;
+  }
+
+  .container--footer__nav {
+    @apply font-Quicksand text-primaryBlack/80 flex-col flex gap-2 text-xs;
+
+    & h4 {
+      @apply font-semibold mb-5 lg:text-lg;
+    }
+  }
 }
