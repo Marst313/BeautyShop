@@ -3,10 +3,7 @@ import { Icon } from '@iconify/react';
 import { atom, useAtom } from 'jotai';
 
 import { AllProducts, InputFilter } from './';
-import { AllBrandsAtom, AllTypesAtom, LargestPriceAtom, PositionAtom } from '../utils/store';
-import { filtersAtom } from '../utils/store';
-
-export const listTypeAtom = atom('grid');
+import { AllBrandsAtom, AllTypesAtom, LargestPriceAtom, PositionAtom, listTypeAtom, filtersAtom } from '../utils/store';
 
 const AllFilter = () => {
   const [filters, setFilters] = useAtom(filtersAtom);

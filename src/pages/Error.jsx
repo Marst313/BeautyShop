@@ -13,7 +13,7 @@ const Error = () => {
 
       <img src={heroError} alt="" className="w-1/3" />
 
-      <h4 className="font-bold text-primaryPink text-3xl ">SOMETHING WENT WRONG !!!</h4>
+      <h4 className="font-bold text-primaryPink text-3xl ">PAGES NOT FOUND !!!</h4>
       <button type="button" onClick={handleOnClick} className="btn">
         Back To Home
       </button>

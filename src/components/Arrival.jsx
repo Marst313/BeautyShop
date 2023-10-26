@@ -3,8 +3,8 @@ import { Beyou, Lumin, TheOrdinary } from '../assets/images';
 
 const Arrival = () => {
   return (
-    <section className="main-container lg:mt-20 lg:flex-col ">
-      <h2 className="self-start">Introducing Our Newest Arrivals</h2>
+    <section className="main-container arrival-container">
+      <h2>Introducing Our Newest Arrivals</h2>
 
       <ul className="card-arrival-container">
         <li>

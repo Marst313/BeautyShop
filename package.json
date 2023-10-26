@@ -36,6 +36,7 @@
     "postcss-import": "^15.1.0",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.5.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "netlify-cli": "^16.5.1"
   }
 }

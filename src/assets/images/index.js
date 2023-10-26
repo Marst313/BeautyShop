@@ -1,6 +1,7 @@
 import Beyou from './arrival/products1.jpg';
 import Caraousel1 from './caraousel/hasilCaraousel1.png';
 import Curology from './curologyProducts.png';
+import DevelopmenImg from './journal/development.svg';
 import Hero from './heroImage.png';
 import HeroAbout from './heroAbout.jpg';
 import IconAbout from './about/Creativity.svg';
@@ -26,6 +27,7 @@ export {
   Beyou,
   Caraousel1,
   Curology,
+  DevelopmenImg,
   Hero,
   IconAbout,
   IconAbout2,

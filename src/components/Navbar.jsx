@@ -5,17 +5,20 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { navLinks } from '../utils/links';
 import { Loading } from './';
+import { useAtom } from 'jotai';
+import { cartsStorage } from '../utils/store';
 
 const Navbar = () => {
   const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const navRef = useRef(null);
+  const [data] = useAtom(cartsStorage);
 
   useEffect(() => {
     const handleOnScroll = () => {
       if (window.scrollY > 0) {
-        navRef.current.classList.add('nav');
+        navRef.current?.classList.add('nav');
       } else {
-        navRef.current.classList.remove('nav');
+        navRef.current?.classList.remove('nav');
       }
     };
 
@@ -47,7 +50,7 @@ const Navbar = () => {
           <p>Cart</p>
           <Icon icon="mdi:cart" />
           <div>
-            <p className="text-primaryWhite">1</p>
+            <p className="text-primaryWhite">{data?.length || 0}</p>
           </div>
         </Link>
 

@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="main-container w-screen mt-32 bg-bgPrimaryPink flex flex-col gap-10">
-      <div className="flex items-center flex-col lg:flex-row lg:justify-between w-full">
+    <footer>
+      <div>
         <div className="w-full lg:w-1/2">
           <h1>Beauty</h1>
           <p className="text-xs mt-5 leading-relaxed lg:max-w-xs lg:text-sm">Experience transformation with our premium beauty products. Radiate confidence and embrace timeless elegance.</p>
         </div>
 
         <div className="w-full lg:w-1/2 mt-10 flex flex-col lg:flex-row gap-10">
-          <ul className="font-Quicksand text-primaryBlack/80 flex-col flex gap-2 text-xs ">
+          <ul className="container-footer__nav">
             <h4 className="font-semibold mb-5 lg:text-lg">Navigation</h4>
             {navLinks.map((link) => {
               return (
@@ -26,7 +26,7 @@ const Footer = () => {
             })}
           </ul>
 
-          <ul className="font-Quicksand text-primaryBlack/80 flex-col flex gap-2 text-xs ">
+          <ul className="container-footer__nav">
             <h4 className="font-semibold mb-5 lg:text-lg">Contact Us</h4>
             {socialsLinks.map((social) => {
               return (
@@ -40,7 +40,7 @@ const Footer = () => {
             })}
           </ul>
 
-          <ul className="font-Quicksand text-primaryBlack/80 flex-col flex gap-2 text-xs ">
+          <ul className="container-footer__nav">
             <h4 className="font-semibold mb-5 lg:text-lg">Help Center</h4>
             {helpsLinks.map((help) => {
               return (
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <h4 className="lg:self-start text-center">Copyright I Nyoman Dharma © 2023. All right reserved </h4>
+      <h4>Copyright I Nyoman Dharma © 2023. All right reserved </h4>
     </footer>
   );
 };

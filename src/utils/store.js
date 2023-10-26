@@ -17,3 +17,4 @@ export const filtersAtom = atom({
 });
 
 export const cartsStorage = atomWithStorage('carts', []);
+export const listTypeAtom = atom('grid');
